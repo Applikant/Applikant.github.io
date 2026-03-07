@@ -1,0 +1,84 @@
+site_name: Applikant
+site_description: Self-hosted git repository management built with Erlang/OTP and Elm
+site_url: https://applikant.github.io
+repo_url: https://github.com/applikant
+repo_name: applikant
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Erlang Distribution: architecture/erlang-distribution.md
+  - Components:
+    - am – Manager: components/am.md
+    - af – Frontend Connector: components/af.md
+    - as – SSH Handler: components/as.md
+    - ah – Git Hooks: components/ah.md
+    - aw – Web Frontend: components/aw.md
+    - ab – Builder: components/ab.md
+  - Getting Started:
+    - Quick Start: getting-started/quickstart.md
+    - SSH Setup: getting-started/ssh-setup.md
+  - Development:
+    - Building: development/building.md
+    - Status: development/status.md
+  - License: license.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/applikant
+
+copyright: >
+  Code: AGPL-3.0-or-later · Documentation:
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>
+  · © 2026 Ralf Th. Pietsch
+
