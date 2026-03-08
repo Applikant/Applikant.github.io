@@ -1,5 +1,8 @@
 # Architecture Overview
 
+!!! note "Concept"
+    This page describes the **target architecture**. Not all connections and features are fully implemented yet — see the [Development Status](../development/status.md) for details.
+
 Applikant is a **distributed system** built from several loosely coupled Erlang/OTP components. Each component runs as its own Erlang node, and they communicate via Erlang's built-in distribution mechanism.
 
 ## System Diagram

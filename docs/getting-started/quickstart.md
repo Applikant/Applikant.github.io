@@ -1,5 +1,8 @@
 # Quick Start
 
+!!! warning "Work in Progress"
+    These instructions reflect the current development state. Some steps may not work fully yet.
+
 Get Applikant running on your local machine in a few minutes.
 
 ## Prerequisites

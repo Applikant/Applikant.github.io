@@ -1,5 +1,8 @@
 # Development Status
 
+!!! info "Work in Progress"
+    Applikant is in an early stage of development. The tables below reflect the current state of implementation. This documentation describes the **concept and planned architecture** — not all features are functional yet.
+
 Current implementation status of all Applikant features.
 
 ## Components

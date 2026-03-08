@@ -2,6 +2,11 @@
 
 **Self-hosted git repository management — built with Erlang/OTP and Elm.**
 
+!!! warning "Work in Progress"
+    Applikant is under active development and **not yet ready for production use**.
+    What you are reading here is the **concept and architecture** of the project.
+    Contributions, feedback and ideas are very welcome!
+
 ---
 
 Applikant is a self-hosted git repository management platform — similar to Gitea or Gogs, but built entirely in **Erlang/OTP** and **Elm**. Thanks to Erlang's built-in distribution capabilities, Applikant can be spread across multiple machines with minimal effort. The web frontend is written in Elm, a functional language that compiles to JavaScript and guarantees zero runtime exceptions, resulting in a fast and reliable user interface.
