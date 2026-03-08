@@ -9,37 +9,38 @@ Current implementation status of all Applikant features.
 
 | Component | Status | Notes |
 |---|---|---|
-| **am** – Manager | 🟡 Partial | Supervision tree, hook processing, node observer done. User/permission management missing. |
-| **af** – Frontend Connector | 🟡 Partial | OTP skeleton with `af_auth` (allows everything). Real forwarding to `am` missing. |
+| **am** – Manager | 🟡 Partial | Supervision tree, hook processing, node observer, user DB with SSH key management done. Permission checks not yet enforced. |
+| **af** – Frontend Connector | 🟡 Partial | OTP app with `af_auth` (allows everything), `af_hook_server`, `af_repo_manager`. Real permission forwarding to `am` missing. |
 | **as** – SSH Handler | 🟡 Partial | Parses SSH commands, connects to `af`. Actual git execution TODO. |
-| **ah** – Git Hooks | ✅ Working | Connects to Manager, sends hook data, receives response. |
-| **aw** – Web Frontend | 🟡 Partial | Cowboy running, static files served, git HTTP read-only foundation. Elm landing page done. |
+| **ah** – Git Hooks | ✅ Working | Connects to `af`, sends hook data, receives response via Manager. |
+| **aw** – Web Frontend | 🟡 Partial | Cowboy running, Elm UI with Dashboard, Repository CRUD, User + SSH key management. Git HTTP read-only foundation. |
 | **ab** – Builder | 🟡 Partial | Docker image builds, `build.sh` works. Manager integration missing. |
 
 ## Features
 
 | Feature | Status |
 |---|---|
-| Git hook communication (ah ↔ am) | ✅ Implemented |
+| Git hook communication (ah → af → am) | ✅ Implemented |
 | Hook processing (pre-receive, update, post-update) | ✅ Implemented |
 | Supervision tree with hook handler | ✅ Implemented |
 | Node monitoring | ✅ Implemented |
 | Cowboy HTTP server | ✅ Implemented |
+| Elm web interface (Dashboard, Repos, Users) | ✅ Implemented |
+| Repository management via web (create, list, detail) | ✅ Implemented |
+| User management with SSH keys (create, list, add/edit/remove keys) | ✅ Implemented |
+| REST API (repos, users, SSH keys) | ✅ Implemented |
 | Git HTTP protocol (read-only clone/fetch) | 🟡 Foundation |
-| Elm web interface | 🟡 Landing page |
 | SSH forced command parsing | 🟡 Scaffold |
-| User and permission management | ❌ Not started |
-| Repository management via web | ❌ Not started |
+| Permission enforcement (read/write per repo) | ❌ Not started |
 | Automatic `authorized_keys` management | ❌ Not started |
 | Builder triggered by Manager | ❌ Not started |
 | Webhooks | ❌ Not started |
 
 ## Roadmap
 
-1. **Authorization** — Implement real permission checks in `am`, forward from `af`
+1. **Permission enforcement** — Implement real permission checks (read/write per repo per user) in `am`, forward from `af`
 2. **SSH execution** — Complete `as` to actually run git commands after authorization
-3. **User management** — CRUD for users, SSH keys, permissions in `am`
-4. **Web UI** — Elm pages for repository browsing, user management
-5. **Builder integration** — Manager triggers `ab` after push
-6. **`authorized_keys` automation** — `af` manages SSH keys based on Manager data
+3. **`authorized_keys` automation** — `af` manages SSH keys based on Manager data
+4. **Builder integration** — Manager triggers `ab` after push
+5. **Webhooks** — Notify external services on push/merge events
 

@@ -41,6 +41,8 @@ Each line:
 
 ### 4. Create a bare repository
 
+Repositories can be created via the **web UI** at [http://localhost:8008](http://localhost:8008) (Repositories → Create), or manually:
+
 ```bash
 sudo -u git mkdir -p /home/git/repos/team/project.git
 sudo -u git git init --bare /home/git/repos/team/project.git

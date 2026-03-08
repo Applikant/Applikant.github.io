@@ -59,6 +59,8 @@ cd ../aw
 rebar3 shell
 ```
 
+The Elm source is split into modules under `elm/src/` (Main, Types, Shared, Page/Dashboard, Page/Repositories, Page/Users).
+
 ### ab – Builder
 
 ```bash

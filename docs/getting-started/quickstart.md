@@ -53,6 +53,12 @@ You should see:
 
 Open [http://localhost:8008](http://localhost:8008) in your browser.
 
+The web interface lets you:
+
+- View the Dashboard
+- Create and browse git repositories
+- Manage users and their SSH keys
+
 ## 3. Start the Frontend Connector (optional)
 
 In a **new terminal**:

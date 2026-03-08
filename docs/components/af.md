@@ -33,6 +33,7 @@ ah ──[Erlang Dist]──▶ am       ah ──[local]──▶ af ──[Erl
 |---|---|---|
 | `af_auth` | `af_auth` | `as` — `af_auth:check_access(User, Repo, Access)` |
 | `af_hook_server` | `af_hook_server` | `ah` — `af_hook_server:handle_hook(HookData)` |
+| `af_repo_manager` | `af_repo_manager` | `aw` — `af_repo_manager:create_repo(Name)`, `af_repo_manager:list_repos()` |
 
 ## Erlang Node
 
@@ -44,7 +45,7 @@ ah ──[Erlang Dist]──▶ am       ah ──[local]──▶ af ──[Erl
 ## Status
 
 !!! warning "Work in progress"
-    Currently an OTP skeleton with `af_auth` (allows everything). Real authorization forwarding to `am` is not yet implemented.
+    `af_auth` allows everything (no real permission checks). `af_hook_server` forwards hook data to `am`. `af_repo_manager` creates bare repos with `ah` hooks. Real authorization forwarding to `am` is not yet implemented.
 
 ## Build & Run
 

@@ -25,6 +25,7 @@ graph LR
 
 ```
 am_sup (one_for_one)
+├── am_user_db               (worker, permanent, globally registered)
 ├── am_node_observer         (worker, permanent)
 ├── am_hook_handler_sup      (supervisor, simple_one_for_one)
 │   └── am_hook_handler      (worker, temporary – one per hook call)
@@ -42,6 +43,8 @@ am_sup (one_for_one)
 | `am_hook_handler_sup` | Supervisor | `simple_one_for_one` — starts a handler per hook call |
 | `am_hook_handler` | gen_server | Processes an individual git hook (temporary worker) |
 | `am_node_observer` | gen_server | Monitors connecting/disconnecting Erlang nodes |
+| `am_user_db` | gen_server | User database with SSH key management (ETS-backed, globally registered) |
+| `am_ai_claude` | Module | Prototype: Claude AI integration for code review (experimental) |
 
 ## Git Hook Processing
 

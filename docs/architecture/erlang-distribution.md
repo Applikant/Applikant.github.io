@@ -82,8 +82,10 @@ Key services register themselves globally so that any node in the cluster can ca
 | Process | Module | Registered As |
 |---|---|---|
 | Hook API | `am_hook_api` | `{global, am_hook_api}` |
+| User DB | `am_user_db` | `{global, am_user_db}` |
 | Hook Server | `af_hook_server` | `{global, af_hook_server}` |
 | Auth Service | `af_auth` | `{global, af_auth}` |
+| Repo Manager | `af_repo_manager` | `{global, af_repo_manager}` |
 
 This means `as` does not need to know which specific node `af_auth` runs on — it just calls `{global, af_auth}` and Erlang routes the message.
 
