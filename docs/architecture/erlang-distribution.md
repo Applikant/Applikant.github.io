@@ -61,7 +61,7 @@ These are short-lived processes. On every invocation, they:
 
 1. Start a temporary Erlang node with a unique name (e.g. `as_12345@host`)
 2. Set the cookie
-3. Ping the target node (`af` or `am`)
+3. Ping the local `af` node
 4. Make a single `gen_server:call` to the globally registered service
 5. Exit
 
@@ -82,6 +82,7 @@ Key services register themselves globally so that any node in the cluster can ca
 | Process | Module | Registered As |
 |---|---|---|
 | Hook API | `am_hook_api` | `{global, am_hook_api}` |
+| Hook Server | `af_hook_server` | `{global, af_hook_server}` |
 | Auth Service | `af_auth` | `{global, af_auth}` |
 
 This means `as` does not need to know which specific node `af_auth` runs on — it just calls `{global, af_auth}` and Erlang routes the message.

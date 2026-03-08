@@ -7,8 +7,8 @@ The **central instance** of the Applikant system. The Manager is an OTP applicat
 ```mermaid
 graph LR
     as[as] --> af[af]
+    ah[ah] --> af
     af --> am[am – Manager]
-    ah[ah] --> am
     aw[aw] --> am
     am --> ab[ab]
 
@@ -16,8 +16,8 @@ graph LR
 ```
 
 - **as** (SSH) connects to **af** to check user authorization
-- **af** (Frontend) maintains a permanent connection to **am** and forwards requests
-- **ah** (git hooks) asks the Manager directly on every push
+- **af** (Frontend) maintains a permanent connection to **am** and forwards requests from both `as` and `ah`
+- **ah** (git hooks) connects locally to **af** which forwards hook data to the Manager
 - **aw** (Web Frontend) connects to **am** to display and manage repositories
 - **ab** (Builder) is triggered by the Manager to run builds
 
@@ -45,11 +45,12 @@ am_sup (one_for_one)
 
 ## Git Hook Processing
 
-When a git hook (`ah`) contacts the Manager:
+When a git hook is triggered:
 
-1. `ah` calls `gen_server:call({global, am_hook_api}, {git_hook, {Hook, Args, Env, CWD}})`
-2. `am_hook_api` starts a new `am_hook_handler` via `am_hook_handler_sup`
-3. The handler processes the hook asynchronously and replies directly to the caller
+1. `ah` calls `af_hook_server:handle_hook(HookData)` on the local `af` node
+2. `af_hook_server` forwards the request to `gen_server:call({global, am_hook_api}, {git_hook, {Hook, Args, Env, CWD}})`
+3. `am_hook_api` starts a new `am_hook_handler` via `am_hook_handler_sup`
+4. The handler processes the hook asynchronously and replies back through `af` to `ah`
 
 **Supported hooks:**
 

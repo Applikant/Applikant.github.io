@@ -32,6 +32,7 @@ ah ──[Erlang Dist]──▶ am       ah ──[local]──▶ af ──[Erl
 | Process | Module | Called By |
 |---|---|---|
 | `af_auth` | `af_auth` | `as` — `af_auth:check_access(User, Repo, Access)` |
+| `af_hook_server` | `af_hook_server` | `ah` — `af_hook_server:handle_hook(HookData)` |
 
 ## Erlang Node
 

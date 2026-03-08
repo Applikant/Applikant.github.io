@@ -1,7 +1,7 @@
 # Architecture Overview
 
 !!! note "Concept"
-    This page describes the **target architecture**. Not all connections and features are fully implemented yet — see the [Development Status](../development/status.md) for details.
+    This page describes the **target architecture**. The design may change with every development step as the project evolves — see the [Development Status](../development/status.md) for details.
 
 Applikant is a **distributed system** built from several loosely coupled Erlang/OTP components. Each component runs as its own Erlang node, and they communicate via Erlang's built-in distribution mechanism.
 
@@ -66,8 +66,10 @@ sequenceDiagram
     as->>SSH: exec git-receive-pack
     Note over SSH: git executes hooks
     SSH->>ah: pre-receive hook
-    ah->>am: {git_hook, {pre-receive, ...}}
-    am-->>ah: ok
+    ah->>af: {git_hook, HookData}
+    af->>am: {git_hook, {pre-receive, ...}}
+    am-->>af: ok
+    af-->>ah: ok
 ```
 
 ### Git Clone via HTTP (read-only)

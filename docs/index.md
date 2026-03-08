@@ -5,6 +5,7 @@
 !!! warning "Work in Progress"
     Applikant is under active development and **not yet ready for production use**.
     What you are reading here is the **concept and architecture** of the project.
+    The design may change with every development step as things evolve.
     Contributions, feedback and ideas are very welcome!
 
 ---
@@ -19,8 +20,8 @@ Applikant gives you full control over your source code without relying on third-
 graph LR
     User([User]) -->|SSH| as[as – SSH]
     as --> af[af – Frontend]
+    ah[ah – git Hooks] --> af
     af --> am[am – Manager]
-    ah[ah – git Hooks] --> am
     aw[aw – Web Frontend] --> am
     am --> ab[ab – Builder]
 
@@ -39,7 +40,7 @@ graph LR
 | **[am – Manager](components/am.md)** | OTP Application | Central instance — repos, users, permissions, hook processing |
 | **[af – Frontend Connector](components/af.md)** | OTP Application | Permanent local proxy between escripts and the Manager |
 | **[as – SSH Handler](components/as.md)** | Escript | SSH forced command — authorizes users, allows only git commands |
-| **[ah – Git Hooks](components/ah.md)** | Escript | Universal git hook handler — asks the Manager for permission |
+| **[ah – Git Hooks](components/ah.md)** | Escript | Universal git hook handler — forwards hook data via `af` to the Manager |
 | **[aw – Web Frontend](components/aw.md)** | OTP Application | Cowboy HTTP server with Elm UI and read-only git HTTP |
 | **[ab – Builder](components/ab.md)** | OTP Application | Docker-in-Docker build service |
 
